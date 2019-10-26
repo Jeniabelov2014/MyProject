@@ -2,12 +2,12 @@
 
 <suite name="FirstSuit">
     <listeners>
-        <!--<listener class-name="main.java.Utils.AnnotationTransformer"/>-->
+        <listener class-name="main.java.Utils.AnnotationTransformer"/>
         <listener class-name="main.java.Utils.Testlistener"/>
     </listeners>
     <test name="FirstTest">
         <classes>
-            <class name="test.java.Lesson9">
+            <class name="test.java.MainTest">
                 <methods>
                     <include name="mainTest"/>
                 </methods>

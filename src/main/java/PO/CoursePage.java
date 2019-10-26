@@ -30,7 +30,7 @@ public class  CoursePage extends BasePage {
         By element = By.xpath("//input[@id=//div[contains(text(), '" + location + "')]/../@for]");
         WebElement webLocation = driver.findElement(element);
         wait.until(ExpectedConditions.presenceOfElementLocated(element));
-        logger.info("Checked location '"+ location +"'");
+        logger.info("Checked location '"+ location +"' ");
         return webLocation.isSelected();
     }
     public boolean checkIfPolitAgreemSelected() {

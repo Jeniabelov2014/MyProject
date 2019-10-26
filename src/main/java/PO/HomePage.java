@@ -59,6 +59,7 @@ public class HomePage extends BasePage {
         WebElement javaCourses = driver.findElement(By.xpath("//h2[contains(text(), '" + courseName + "')]/..")); //h3[contains(text(), '" + courseName + "')]/../img
         wait.until(ExpectedConditions.elementToBeClickable(javaCourses));
         javaCourses.click();
+        logger.info("Course '" + courseName + "'is clicked");
         this.waitSpinner();
         return this;
     }

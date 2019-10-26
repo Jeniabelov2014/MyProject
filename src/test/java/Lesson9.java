@@ -1,5 +1,8 @@
 package test.java;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import main.java.PO.CoursePage;
 import main.java.PO.HomePage;
 import main.java.Utils.RetryAnalyzer;
@@ -14,16 +17,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.testng.Assert.*;
 
+@Epic("Cart menu")
+@Feature("Add product")
 public class Lesson9 {
     static WebDriver driver;
     static WebDriverWait wait;
@@ -40,7 +42,7 @@ public class Lesson9 {
         homePage = new HomePage(driver);
         coursePage = new CoursePage(driver);
     }
-
+    @Story("positive story")
     @Test(dataProvider = "providerEveningCourses", retryAnalyzer = RetryAnalyzer.class)
     public static void mainTest(String courseName) throws InterruptedException {
         /*homePage.isShown()
@@ -48,7 +50,9 @@ public class Lesson9 {
         assertTrue(false);*/
         homePage.isShown()
                 .openEveningCourses().openCourses(courseName).isPresent();
-        coursePage.clicPay().checkIfPolitAgreemSelected();
+        coursePage.clicPay().checkIfLocationIsSelected("Берестейская");
+        assertFalse(coursePage.checkIfLocationIsSelected("Позняки"));
+        assertFalse(coursePage.checkIfLocationIsSelected("ВДНХ"));
                 /*.selectLanguage(lang);
                 .clicLogo()
                 .openCourses("C++");*//*
@@ -64,7 +68,38 @@ public class Lesson9 {
 
     @Test()
     public static void checkEveningCourses() {
-       assertTrue(homePage.isShown().openEveningCourses().isPresent());
+        assertTrue(homePage.isShown().openEveningCourses().isPresent());
+    }
+
+    @Test
+    public static void randomCourse() {
+        String[] str = {"Тестирование",
+                "Frontend development",
+                "JS development",
+                "Веб-дизайн",
+                "PHP",
+                "Программирование под IOS",
+                "Программирование под Android",
+                "Java programming",
+                "Python",
+                "Data Science/Machine Learning",
+                "C# /.NET development",
+                "C++",
+                "Game Development",
+                "DEVOPS",
+                "Digital Marketing",
+                "Управление персоналом",
+                "Управление проектами",
+                "Менеджмент",
+                "Кибербезопасность",
+                "Mobile development",
+                "Видеомонтаж",
+                "Cisco",
+                "Go development"};
+        int rand = (int) (Math.random() * (str.length + 1) );
+        homePage.isShown()
+                .openEveningCourses().openCourses(str[rand]);
+        coursePage.clicPay();
     }
 
     @Test
@@ -94,7 +129,7 @@ public class Lesson9 {
     }
 
     @AfterMethod
-    public static void tearDown(ITestResult iTestResult) {
+    public static void tearDown(ITestResult result) {
         driver.quit();
     }
 
