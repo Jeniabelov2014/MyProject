@@ -95,7 +95,7 @@ public class Lesson9 {
                 "Видеомонтаж",
                 "Cisco",
                 "Go development"};
-        int rand = (int) (Math.random() * (str.length + 11) );
+        int rand = (int) (Math.random() * (str.length + 1) );
         homePage.isShown()
                 .openEveningCourses().openCourses(str[rand]);
         coursePage.clickPay();

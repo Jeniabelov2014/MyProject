@@ -67,7 +67,7 @@ public class HomePage extends BasePage {
 
     public HomePage openEveningCourses() {
         String locator = "//nav[@class='menu-main-menu-container']//a[.='Вечерние курсы']";
-       // wait.until(ExpectedConditions.visibilityOf(eveningCourseBtn));
+       // wait.until(ExpectedConditions.visibilityOf(eveningCourseBtn));.
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
         WebElement eveningCourseBtn = driver.findElement(By.xpath(locator));
         eveningCourseBtn.click();
