@@ -17,7 +17,14 @@ public class  CoursePage extends BasePage {
         super(driver);
     }
 
-    public CoursePage clicPay() {
+    /*public CoursePage clickCourse() {
+        WebElement course = driver.findElement(By.xpath("//div[@class=\"container_12 isotope 23\"]//div/h2"));
+        course.click();
+        this.waitSpinner();
+        return this;
+    }*/
+
+    public CoursePage clickPay() {
         WebElement payBtn = driver.findElement(By.xpath("//button[@name='roadFull_payOnce']"));
         wait.until(ExpectedConditions.elementToBeClickable(payBtn));
         payBtn.click();

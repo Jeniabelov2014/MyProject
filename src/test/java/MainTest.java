@@ -20,7 +20,7 @@ public class MainTest {
     @BeforeMethod
     public static void setUp() {
         driver = new ChromeDriver();
-        System.setProperty("webdriver.crome.driver", "C:\\Users\\Admin\\Desktop\\Lesson8");
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Mak\\IdeaProjects\\selenium");
         driver.manage().window().maximize();//развернет окно браузера на максимус
         driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS); //изменили неявное ожидание, которое изначально 10 сек, на 100милисек
     }

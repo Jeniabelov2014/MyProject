@@ -6,7 +6,7 @@ import org.testng.ITestResult;
 public class RetryAnalyzer implements IRetryAnalyzer {
     int counter = 1;
     int retryCount = 2;
-    @Override
+    @java.lang.Override
     public boolean retry(ITestResult iTestResult) {
         if (counter < retryCount) {
             counter++;

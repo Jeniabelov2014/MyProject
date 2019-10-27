@@ -37,7 +37,7 @@ public class Screenshot {
                             + "\\screenshots\\"
                             + result.getTestClass().getName().replace(".", "\\\\")
                             + "\\" + result.getMethod().getConstructorOrMethod().getName()
-                            //+ result.getParameters()[0]
+                            + result.getParameters()[0]
                             + ".png"));
         } catch (IOException e) {
             e.printStackTrace();

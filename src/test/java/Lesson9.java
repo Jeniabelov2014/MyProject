@@ -1,28 +1,27 @@
 package test.java;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import main.java.PO.CoursePage;
 import main.java.PO.HomePage;
 import main.java.Utils.RetryAnalyzer;
-import main.java.Utils.Screenshot;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 @Epic("Cart menu")
 @Feature("Add product")
@@ -50,13 +49,13 @@ public class Lesson9 {
         assertTrue(false);*/
         homePage.isShown()
                 .openEveningCourses().openCourses(courseName).isPresent();
-        coursePage.clicPay().checkIfLocationIsSelected("Берестейская");
+        coursePage.clickPay().checkIfLocationIsSelected("Берестейская");
         assertFalse(coursePage.checkIfLocationIsSelected("Позняки"));
         assertFalse(coursePage.checkIfLocationIsSelected("ВДНХ"));
                 /*.selectLanguage(lang);
-                .clicLogo()
+                .clickLogo()
                 .openCourses("C++");*//*
-        coursePage.clicPay();
+        coursePage.clickPay();
 
         .checkIfPolitAgreemSelected("");
 
@@ -96,10 +95,10 @@ public class Lesson9 {
                 "Видеомонтаж",
                 "Cisco",
                 "Go development"};
-        int rand = (int) (Math.random() * (str.length + 1) );
+        int rand = (int) (Math.random() * (str.length + 11) );
         homePage.isShown()
                 .openEveningCourses().openCourses(str[rand]);
-        coursePage.clicPay();
+        coursePage.clickPay();
     }
 
     @Test
@@ -130,6 +129,7 @@ public class Lesson9 {
 
     @AfterMethod
     public static void tearDown(ITestResult result) {
+        saveScreenshot();
         driver.quit();
     }
 
@@ -166,9 +166,14 @@ public class Lesson9 {
     @DataProvider
     public Object[][] provider() {
         return new Object[][]{
-                {"ru-RU"}/*,
+                {"ru-RU"},
                 {"en-GB"},
-                {"uk"}*/
+                {"uk"}
         };
+    }
+
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public static byte[] saveScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
