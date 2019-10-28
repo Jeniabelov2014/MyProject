@@ -1,5 +1,6 @@
 package main.java.PO;
 
+import io.qameta.allure.Step;
 import main.java.Utils.PropertyLoader;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -20,7 +21,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-
+    @Step("Open Home page")
     public HomePage isShown() {
         /*logger.trace("Trace log");
         logger.debug("Debag log lkjakljldsjalskjdalsdhada \n ashgdkajshgdjahgskdjhags \n");

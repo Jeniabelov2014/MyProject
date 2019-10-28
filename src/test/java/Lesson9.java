@@ -1,5 +1,6 @@
 package test.java;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -9,9 +10,7 @@ import main.java.Utils.RetryAnalyzer;
 import main.java.Utils.Screenshot;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -99,7 +98,7 @@ public class Lesson9 {
         int rand = (int) (Math.random() * (str.length + 1) );
         homePage.isShown()
                 .openEveningCourses().openCourses(str[rand]);
-        coursePage.clicPay();
+        coursePage.clicPay().putInfo();
     }
 
     @Test
@@ -130,13 +129,14 @@ public class Lesson9 {
 
     @AfterMethod
     public static void tearDown(ITestResult result) {
+        saveScreenshot();
         driver.quit();
     }
 
     @DataProvider
     public Object[][] providerEveningCourses() {
         return new Object[][]{
-                {"Тестирование"}/*,
+                {"hестирование"},
                 {"Frontend development"},
                 {"JS development"},
                 {"Веб-дизайн"},
@@ -158,7 +158,7 @@ public class Lesson9 {
                 {"Mobile development"},
                 {"Видеомонтаж"},
                 {"Cisco"},
-                {"Go development"}*/
+                {"Go development"}
 
         };
     }
@@ -170,5 +170,9 @@ public class Lesson9 {
                 {"en-GB"},
                 {"uk"}*/
         };
+    }
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public static byte[] saveScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

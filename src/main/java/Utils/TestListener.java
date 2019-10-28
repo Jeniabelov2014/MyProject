@@ -5,7 +5,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class Testlistener implements ITestListener {
+public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {

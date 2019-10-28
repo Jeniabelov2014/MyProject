@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class  CoursePage extends BasePage {
 
@@ -22,6 +23,26 @@ public class  CoursePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(payBtn));
         payBtn.click();
         this.waitSpinner();
+        return this;
+    }
+
+    public CoursePage putInfo(){
+        WebElement nameField = driver.findElement(By.xpath("//*[@id=\"name\"]"));
+        nameField.sendKeys("test");
+        WebElement emailField = driver.findElement(By.xpath("//*[@id=\"email\"]"));
+        emailField.sendKeys("jeniabelov2014@gmail.com");
+        WebElement phoneField = driver.findElement(By.xpath("//*[@id=\"phone\"]"));
+        phoneField.sendKeys("0638141284");
+        WebElement checkbox = driver.findElement(By.xpath("//div[@class='privacy-policy__wrapper']//span"));
+        wait.until(ExpectedConditions.elementToBeClickable(checkbox));
+        checkbox.click();
+        WebElement submitBtn = driver.findElement(By.xpath("//input[@class='submit ']"));
+        wait.until(ExpectedConditions.elementToBeClickable(submitBtn));
+        submitBtn.click();
+        waitSpinner();
+        WebElement thanksBlock = driver.findElement(By.xpath("//div[@class='thanks-block']"));
+        wait.until(ExpectedConditions.visibilityOf(thanksBlock));
+        Assert.assertTrue(thanksBlock.isDisplayed());
         return this;
     }
 
